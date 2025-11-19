@@ -5,21 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BYU Study Hub - Dashboard</title>
   <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     :root {
       --byu-navy: #002e5d;
-      --byu-silver: #a7a8aa;
-      --byu-white: #ffffff;
       --byu-accent: #0a4a8a;
+      --byu-white: #ffffff;
     }
-
     body {
       background: linear-gradient(135deg, var(--byu-navy), var(--byu-accent));
       background-size: 200% 200%;
@@ -31,112 +25,114 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: var(--byu-navy);
     }
-
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     .welcome-card {
-      max-width: 650px;
+      max-width: 700px;
       width: 100%;
       background: var(--byu-white);
-      padding: 2.5rem;
-      border-radius: 1.25rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 3rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
       text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border-top: 8px solid var(--byu-navy);
+      border-top: 10px solid var(--byu-navy);
     }
-
     .welcome-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+      transition: all 0.3s ease;
     }
-
     .icon {
-      font-size: 3rem;
+      font-size: 4rem;
       color: var(--byu-navy);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-
     h1 {
-      color: var(--byu-navy);
-      font-weight: 700;
-      margin-bottom: 0.75rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
       letter-spacing: 0.5px;
     }
-
-    p {
-      color: #444;
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
+    .username {
+      font-size: 1.4rem;
+      color: var(--byu-navy);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
     }
-
     .btn-custom {
       background-color: var(--byu-navy);
-      color: var(--byu-white);
+      color: white;
       border: none;
-      border-radius: 0.5rem;
-      padding: 0.6rem 1.5rem;
-      font-size: 1rem;
-      margin: 0.5rem;
-      transition: background-color 0.2s ease;
+      border-radius: 0.6rem;
+      padding: 0.75rem 1.8rem;
+      font-size: 1.1rem;
+      margin: 0.6rem;
+      transition: all 0.3s ease;
     }
-
     .btn-custom:hover {
       background-color: var(--byu-accent);
+      transform: scale(1.05);
     }
-
-    footer {
-      position: absolute;
-      bottom: 1rem;
-      text-align: center;
-      width: 100%;
-      color: var(--byu-silver);
-      font-size: 0.9rem;
-    }
-
     .study-tip {
       background-color: #f8f9fa;
-      border-left: 4px solid var(--byu-navy);
+      border-left: 6px solid var(--byu-navy);
       border-radius: 0.5rem;
-      padding: 1rem;
-      font-size: 0.95rem;
+      padding: 1.2rem;
+      margin-top: 2rem;
+      font-size: 1rem;
       color: #333;
-      margin-top: 1rem;
+    }
+    footer {
+      position: absolute;
+      bottom: 1.5rem;
+      width: 100%;
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
+
   <div class="welcome-card">
     <div class="icon">
-      <i class="bi bi-journal-bookmark"></i>
-    </div>
-    <h1>Welcome to BYU Study Hub!</h1>
-    <p>Connect with classmates, find study partners, and stay on top of your courses. Let’s make learning together easier than ever!</p>
-
-    <div>
-      <a href="/join-group" class="btn btn-custom"><i class="bi bi-people-fill me-1"></i>Join a Group</a>
-      <a href="/create-group" class="btn btn-custom"><i class="bi bi-plus-circle me-1"></i>Create a Group</a>
-      <a href="/logout" class="btn btn-danger ms-1"><i class="bi bi-box-arrow-right me-1"></i>Logout</a>
+      <i class="bi bi-journal-bookmark-fill"></i>
     </div>
 
-    <div class="study-tip mt-4">
-      <i class="bi bi-lightbulb me-2 text-warning"></i>
-      <strong>Study Tip:</strong> Schedule group sessions at least twice a week — consistent collaboration boosts retention and motivation!
+    <h1>Welcome back to BYU Study Hub!</h1>
+    
+    <!-- This will show the logged-in user's name -->
+    <div class="username">
+      👋 Hello, <%= userName || 'Cougars' %>!
+    </div>
+
+    <p class="lead mb-4">
+      Connect with classmates, form study groups, and crush those exams together.
+    </p>
+
+    <div class="d-flex flex-wrap justify-content-center gap-3">
+      <a href="/create-group" class="btn btn-custom">
+        <i class="bi bi-plus-circle me-2"></i>Create New Group
+      </a>
+      <a href="/groups" class="btn btn-custom">
+        <i class="bi bi-people-fill me-2"></i>Browse All Groups
+      </a>
+      <a href="/logout" class="btn btn-outline-danger">
+        <i class="bi bi-box-arrow-right me-2"></i>Logout
+      </a>
+    </div>
+
+    <div class="study-tip">
+      <i class="bi bi-lightbulb-fill text-warning me-2"></i>
+      <strong>Pro Tip:</strong> Students who study in groups regularly score 11–15% higher on exams. You got this!
     </div>
   </div>
 
   <footer>
-    © 2025 BYU Study Hub · Built for Cougars by Cougars 🐾
+    © 2025 BYU Study Hub • Built by Cougars, for Cougars 🐾
   </footer>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
